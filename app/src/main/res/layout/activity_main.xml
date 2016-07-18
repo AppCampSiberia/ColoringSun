@@ -9,8 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sonya.coloringsun.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <ImageView
+        android:layout_width="736dp"
+        android:layout_height="873dp"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true" />
 </RelativeLayout>
