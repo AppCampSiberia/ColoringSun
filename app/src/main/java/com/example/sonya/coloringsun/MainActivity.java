@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             filler = new QueueLinearFloodFiller(bitmap);
             filler.setFillColor(newColor);
             filler.setTargetColor(targetColor);
+            filler.setTolerance(100);
             Point pt = new Point(1, 1);
             filler.floodFill(1, 1);
             bitmap = filler.getImage();
