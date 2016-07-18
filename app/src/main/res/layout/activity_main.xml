@@ -9,9 +9,143 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sonya.coloringsun.MainActivity">
 
-    <ImageView
-        android:layout_width="736dp"
-        android:layout_height="873dp"
-        android:id="@+id/imageView"
-        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonColor"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#fb0303"
+                android:text="RED" />
+
+            <Button
+                android:id="@+id/buttonOrange"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#fb8b03"
+                android:text="ORANGE" />
+
+            <Button
+                android:id="@+id/buttonYellow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#fbe603"
+                android:text="YELLOW" />
+
+            <Button
+                android:id="@+id/buttonGreen"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#49fb03"
+                android:text="GREEN" />
+
+            <Button
+                android:id="@+id/buttonBlue"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#03a8fb"
+                android:text="BLUE" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/buttonDarkBlue"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#0328fb"
+                android:text="DARK-BLUE" />
+
+            <Button
+                android:id="@+id/buttonViolet"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#7b03fb"
+                android:text="VIOLET" />
+
+            <Button
+                android:id="@+id/buttonBlack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#060000"
+                android:text="BLACK" />
+
+            <Button
+                android:id="@+id/buttonPink"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#f99ef0"
+                android:text="PINK" />
+
+            <Button
+                android:id="@+id/buttonBrown"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:backgroundTint="#401e05"
+                android:text="BROWN" />
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
+
+
