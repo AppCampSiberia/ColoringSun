@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.io.IOException;
 
@@ -53,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonPink;
     private Button buttonBrown;
 
+    private LinearLayout borderRed;
+    private LinearLayout borderOrange;
+    private LinearLayout borderYellow;
+    private LinearLayout borderGreen;
+    private LinearLayout borderBlue;
+    private LinearLayout borderDarkBlue;
+    private LinearLayout borderViolet;
+    private LinearLayout borderGrey;
+    private LinearLayout borderPink;
+    private LinearLayout borderBrown;
+
     private ImageView imageView;
     private Bitmap bitmap;
 
@@ -87,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = redColor;
+                resetBorderColors();
+                borderRed.setBackgroundColor(Color.BLACK);
+
                 render();
             }
         });
@@ -97,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = orangeColor;
+                resetBorderColors();
+                borderOrange.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -107,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = yellowColor;
+                resetBorderColors();
+                borderYellow.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -116,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = greenColor;
+                resetBorderColors();
+                borderGreen.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -125,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = blueColor;
+                resetBorderColors();
+                borderBlue.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -134,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = darkBlueColor;
+                resetBorderColors();
+                borderDarkBlue.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -143,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = violetColor;
+                resetBorderColors();
+                borderViolet.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -152,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = greyColor;
+                resetBorderColors();
+                borderGrey.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -161,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = pinkColor;
+                resetBorderColors();
+                borderPink.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
@@ -170,15 +201,71 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentColor = brownColor;
+                resetBorderColors();
+                borderBrown.setBackgroundColor(Color.BLACK);
                 render();
             }
         });
+
+        borderRed = (LinearLayout) findViewById(R.id.borderRed);
+        borderRed.setBackgroundColor(redColor);
+
+        borderOrange = (LinearLayout) findViewById(R.id.borderOrange);
+        borderOrange.setBackgroundColor(orangeColor);
+
+        borderYellow = (LinearLayout) findViewById(R.id.borderYellow);
+        borderYellow.setBackgroundColor(yellowColor);
+
+        borderGreen = (LinearLayout) findViewById(R.id.borderGreen);
+        borderGreen.setBackgroundColor(greenColor);
+
+        borderBlue = (LinearLayout) findViewById(R.id.borderBlue);
+        borderBlue.setBackgroundColor(blueColor);
+
+        borderDarkBlue = (LinearLayout) findViewById(R.id.borderDarkBlue);
+        borderDarkBlue.setBackgroundColor(darkBlueColor);
+
+        borderViolet = (LinearLayout) findViewById(R.id.borderViolet);
+        borderViolet.setBackgroundColor(violetColor);
+
+        borderGrey = (LinearLayout) findViewById(R.id.borderGrey);
+        borderGrey.setBackgroundColor(greyColor);
+
+        borderPink = (LinearLayout) findViewById(R.id.borderPink);
+        borderPink.setBackgroundColor(pinkColor);
+
+        borderBrown = (LinearLayout) findViewById(R.id.borderBrown);
+        borderBrown.setBackgroundColor(brownColor);
+
+
     }
 
 
     private void render() {
         imageView.setImageBitmap(bitmap);
 
+    }
+
+    private void resetBorderColors() {
+        borderRed.setBackgroundColor(redColor);
+
+        borderOrange.setBackgroundColor(orangeColor);
+
+        borderYellow.setBackgroundColor(yellowColor);
+
+        borderGreen.setBackgroundColor(greenColor);
+
+        borderBlue.setBackgroundColor(blueColor);
+
+        borderDarkBlue.setBackgroundColor(darkBlueColor);
+
+        borderViolet.setBackgroundColor(violetColor);
+
+        borderGrey.setBackgroundColor(greyColor);
+
+        borderPink.setBackgroundColor(pinkColor);
+
+        borderBrown.setBackgroundColor(brownColor);
     }
 
 
