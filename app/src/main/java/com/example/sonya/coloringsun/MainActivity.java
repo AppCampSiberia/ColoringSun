@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
     // #fb0303
 
     int targetColor = Color.WHITE;
-    int newColor = Color.BLUE;
-
-
+    int currentColor = Color.BLUE;
     QueueLinearFloodFiller filler;
+
+
     private Button buttonRed;
     private Button buttonOrange;
     private Button buttonYellow;
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonGrey;
     private Button buttonPink;
     private Button buttonBrown;
+
     private ImageView imageView;
     private Bitmap bitmap;
 
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
             filler = new QueueLinearFloodFiller(bitmap);
-            filler.setFillColor(newColor);
+            filler.setFillColor(currentColor);
             filler.setTargetColor(targetColor);
             filler.setTolerance(100);
             Point pt = new Point(1, 1);
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         buttonRed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = redColor;
                 render();
             }
         });
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         buttonOrange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = orangeColor;
                 render();
             }
         });
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         buttonYellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = yellowColor;
                 render();
             }
         });
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         buttonGreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = greenColor;
                 render();
             }
         });
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         buttonBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = blueColor;
                 render();
             }
         });
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDarkBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = darkBlueColor;
                 render();
             }
         });
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         buttonViolet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = violetColor;
                 render();
             }
         });
@@ -152,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         buttonGrey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = greyColor;
                 render();
             }
         });
@@ -161,15 +160,16 @@ public class MainActivity extends AppCompatActivity {
         buttonPink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = pinkColor;
                 render();
             }
-        }); buttonBrown = (Button) findViewById(R.id.buttonBrown);
+        });
+        buttonBrown = (Button) findViewById(R.id.buttonBrown);
         buttonBrown.setBackgroundColor(brownColor);
         buttonBrown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //a = a * 10 + 2;
+                currentColor = brownColor;
                 render();
             }
         });
