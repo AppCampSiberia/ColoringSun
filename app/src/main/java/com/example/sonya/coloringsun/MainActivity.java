@@ -78,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                render();
+            }
+        });
         try {
             bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
             filler = new QueueLinearFloodFiller(bitmap);
