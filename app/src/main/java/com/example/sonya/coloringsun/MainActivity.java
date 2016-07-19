@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -86,6 +87,30 @@ public class MainActivity extends AppCompatActivity {
                 render();
             }
         });
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    float x = event.getX();
+                    float y = event.getY();
+                    float w = 736;
+                    float width = imageView.getWidth();
+                    x = x/width *w;
+                    float h = 873;
+                    float height = imageView.getWidth();
+                    y= y/height *h;
+                    Point pt = new Point((int)x,(int) y);
+                    filler.setFillColor(currentColor);
+                    filler.floodFill(1, 1);
+                    bitmap = filler.getImage();
+
+                    render();
+
+                }
+                return true;
+            }
+        });
         try {
             bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
             filler = new QueueLinearFloodFiller(bitmap);
@@ -93,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             filler.setTargetColor(targetColor);
             filler.setTolerance(100);
             Point pt = new Point(1, 1);
-            filler.floodFill(1, 1);
+//            filler.floodFill(1, 1);
             bitmap = filler.getImage();
 
             render();
@@ -251,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void render() {
         imageView.setImageBitmap(bitmap);
+        imageView.invalidate();
 
     }
 
