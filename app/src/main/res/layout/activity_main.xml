@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderRed"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -43,7 +43,7 @@
 
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borerOrange"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -61,7 +61,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderYellow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -80,7 +80,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderGreen"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -99,11 +99,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderBlue"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginBotton="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:background="#000000">
 
@@ -135,7 +135,7 @@
 
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderDarkBlue"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -154,7 +154,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderViolet"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -174,7 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderGrey"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -194,7 +194,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderPink"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -214,7 +214,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/viewStub"
+                android:id="@+id/borderBrown"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
