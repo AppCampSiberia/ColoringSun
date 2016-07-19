@@ -21,53 +21,101 @@
             android:layout_weight="0"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/buttonRed"
+            <LinearLayout
+                android:id="@+id/viewStub"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#fb0303"
-                android:text="RED"
-                android:background="#fb0303"
-                android:layout_marginBottom="5dp" />
+                android:background="#000000">
 
-            <Button
-                android:id="@+id/buttonOrange"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:text="ORANGE"
-                android:background="#fb8b03"
-                android:layout_marginBottom="5dp" />
+                <Button
+                    android:id="@+id/buttonRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#fb0303"
+                    android:backgroundTint="#fb0303"
+                    android:text="RED" />
 
-            <Button
-                android:id="@+id/buttonYellow"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:backgroundTint="#fbe603"
-                android:text="YELLOW"
-                android:background="#fbe603"
-                android:layout_marginBottom="5dp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonGreen"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:backgroundTint="#49fb03"
-                android:text="GREEN"
-                android:background="#49fb03"
-                android:layout_marginBottom="5dp" />
 
-            <Button
-                android:id="@+id/buttonBlue"
+            <LinearLayout
+                android:id="@+id/viewStub"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#03a8fb"
-                android:text="BLUE"
-                android:background="#03a8fb" />
+                android:background="#000000">
+
+                <Button
+                    android:id="@+id/buttonOrange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#fb8b03"
+                    android:text="ORANGE" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewStub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="#000000">
+
+                <Button
+                    android:id="@+id/buttonYellow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#fbe603"
+                    android:backgroundTint="#fbe603"
+                    android:text="YELLOW" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewStub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="#000000">
+
+                <Button
+                    android:id="@+id/buttonGreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#49fb03"
+                    android:backgroundTint="#49fb03"
+                    android:text="GREEN" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewStub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBotton="5dp"
+                android:layout_weight="1"
+                android:background="#000000">
+
+                <Button
+                    android:id="@+id/buttonBlue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#03a8fb"
+                    android:backgroundTint="#03a8fb"
+                    android:text="BLUE" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -76,8 +124,8 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -86,56 +134,104 @@
             android:orientation="vertical">
 
 
-            <Button
-                android:id="@+id/buttonDarkBlue"
+            <LinearLayout
+                android:id="@+id/viewStub"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#0328fb"
-                android:text="DARK-BLUE"
-                android:background="#0328fb"
-                android:layout_marginBottom="5dp" />
+                android:background="#000000">
 
-            <Button
-                android:id="@+id/buttonViolet"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:backgroundTint="#7b03fb"
-                android:text="VIOLET"
-                android:background="#7b03fb"
-                android:layout_marginBottom="5dp" />
+                <Button
+                    android:id="@+id/buttonDarkBlue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#0328fb"
+                    android:backgroundTint="#0328fb"
+                    android:text="DARK-BLUE" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonGrey"
+            <LinearLayout
+                android:id="@+id/viewStub"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#7e7e7e"
-                android:text="GREY"
-                android:background="#7e7e7e"
-                android:layout_marginBottom="5dp" />
+                android:background="#000000">
 
-            <Button
-                android:id="@+id/buttonPink"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:backgroundTint="#f99ef0"
-                android:text="PINK"
-                android:background="#f99ef0"
-                android:layout_marginBottom="5dp" />
+                <Button
+                    android:id="@+id/buttonViolet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#7b03fb"
+                    android:backgroundTint="#7b03fb"
+                    android:text="VIOLET" />
 
-            <Button
-                android:id="@+id/buttonBrown"
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewStub"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
+                android:background="#000000">
+
+                <Button
+                    android:id="@+id/buttonGrey"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#7e7e7e"
+                    android:backgroundTint="#7e7e7e"
+                    android:text="GREY" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewStub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="#000000">
+
+                <Button
+                    android:id="@+id/buttonPink"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#f99ef0"
+                    android:backgroundTint="#f99ef0"
+                    android:text="PINK" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewStub"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="#000000">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:id="@+id/buttonBrown"
+                android:background="#9f551f"
                 android:backgroundTint="#401e05"
-                android:text="BROWN"
-                android:background="#9f551f" />
+                android:text="BROWN" />
 
-
+                </LinearLayout>
 
 
         </LinearLayout>
