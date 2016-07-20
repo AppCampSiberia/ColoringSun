@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    recreateFiller();
+                    //recreateFiller();
                     float x = event.getX();
                     float y = event.getY();
                     float w = 736;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     y= y/height *h;
                     int xx = (int)x;
                     int yy = (int)y;
-                    
+
                     Point pt = new Point(xx, yy);
                     buttonXY.setText(String.format("%d %d", xx, yy));
                     buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
