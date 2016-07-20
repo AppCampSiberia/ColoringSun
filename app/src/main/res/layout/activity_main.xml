@@ -119,13 +119,39 @@
 
         </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="#ffffff"
+                android:backgroundTint="#ffffff"
+                android:text="" />
+
+            <Button
+                android:id="@+id/buttonColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="#7b03fb"
+                android:text="" />
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                android:layout_centerVertical="true" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -248,14 +274,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-        </LinearLayout>
 
     </LinearLayout>
 
