@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonGrey;
     private Button buttonPink;
     private Button buttonBrown;
+    private Button buttonXY;
+    private Button buttonColor;
 
     private LinearLayout borderRed;
     private LinearLayout borderOrange;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         imageView = (ImageView) findViewById(R.id.imageView);
+        //imageView.set
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,10 +91,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    recreateFiller();
                     float x = event.getX();
                     float y = event.getY();
                     float w = 736;
@@ -100,9 +107,15 @@ public class MainActivity extends AppCompatActivity {
                     float h = 873;
                     float height = imageView.getWidth();
                     y= y/height *h;
-                    Point pt = new Point((int)x,(int) y);
+                    int xx = (int)x;
+                    int yy = (int)y;
+                    
+                    Point pt = new Point(xx, yy);
+                    buttonXY.setText(String.format("%d %d", xx, yy));
+                    buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
+//                    filler = new QueueLinearFloodFiller(bitmap);
                     filler.setFillColor(currentColor);
-                    filler.floodFill(1, 1);
+                    filler.floodFill(xx, yy);
                     bitmap = filler.getImage();
 
                     render();
@@ -111,20 +124,14 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        try {
-            bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
-            filler = new QueueLinearFloodFiller(bitmap);
-            filler.setFillColor(currentColor);
-            filler.setTargetColor(targetColor);
-            filler.setTolerance(100);
-            Point pt = new Point(1, 1);
-//            filler.floodFill(1, 1);
-            bitmap = filler.getImage();
 
-            render();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        buttonXY = (Button) findViewById(R.id.buttonXY);
+
+        buttonColor = (Button) findViewById(R.id.buttonColor);
+
+        recreateFiller();
+
+
 
         buttonRed = (Button) findViewById(R.id.buttonRed);
         buttonRed.setBackgroundColor(redColor);
@@ -275,9 +282,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void render() {
+        imageView.setImageBitmap(null);
         imageView.setImageBitmap(bitmap);
         imageView.invalidate();
 
+    }
+
+    private void recreateFiller() {
+        try {
+            bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
+            buttonXY.setText(String.format("%d %d", bitmap.getWidth(), bitmap.getHeight()));
+            filler = new QueueLinearFloodFiller(bitmap);
+            filler.setFillColor(currentColor);
+            filler.setTargetColor(targetColor);
+            filler.setTolerance(100);
+            Point pt = new Point(1, 1);
+//            filler.floodFill(1, 1);
+            bitmap = filler.getImage();
+
+            render();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void resetBorderColors() {
