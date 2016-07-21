@@ -1,5 +1,7 @@
 package com.example.sonya.coloringsun;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -69,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout borderBrown;
 
     private ImageView imageView;
+    private int imageViewWidth;
+    private int imageViewHeight;
+    private int bitmapWidth;
+    private int bitmapHeight;
     private Bitmap bitmap;
 
     public MainActivity() {
@@ -82,43 +88,47 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         //imageView.set
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                render();
-            }
-        });
-
 
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
+                imageViewWidth = imageView.getWidth();
+                imageViewHeight = imageView.getHeight();
+                float wc = bitmapWidth / imageViewWidth;
+                float hc = bitmapHeight / imageViewHeight;
+
+                if (wc > hc) {
+                    imageViewHeight = (int) (bitmapHeight / wc);
+
+
+                } else {
+                    imageViewWidth = (int) (bitmapWidth / hc);
+
+                }
+
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     //recreateFiller();
                     float x = event.getX();
                     float y = event.getY();
-                    float w = 736;
-                    float width = imageView.getWidth();
-                    x = x/width *w;
-                    float h = 873;
-                    float height = imageView.getWidth();
-                    y= y/height *h;
-                    int xx = (int)x;
-                    int yy = (int)y;
+                    x = x / imageViewWidth * bitmapWidth;
+                    y = y / imageViewHeight * bitmapHeight;
+                    int xx = (int) x;
+                    int yy = (int) y;
 
-                    Point pt = new Point(xx, yy);
-                    buttonXY.setText(String.format("%d %d", xx, yy));
-                    buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
-//                    filler = new QueueLinearFloodFiller(bitmap);
-                    filler.setFillColor(currentColor);
-                    filler.floodFill(xx, yy);
-                    bitmap = filler.getImage();
+                    if (xx < bitmapWidth && yy < bitmapHeight) {
+                        Point pt = new Point(xx, yy);
+                        buttonXY.setText(String.format("%d %d", xx, yy));
+                        buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
+                        filler.setFillColor(currentColor);
+                        filler.floodFill(xx, yy);
+                        bitmap = filler.getImage();
 
-                    render();
+                        render();
+
+                    }
+
 
                 }
                 return true;
@@ -128,9 +138,17 @@ public class MainActivity extends AppCompatActivity {
         buttonXY = (Button) findViewById(R.id.buttonXY);
 
         buttonColor = (Button) findViewById(R.id.buttonColor);
+        buttonColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //supermanTextView.setBackgroundColor(Color.YELLOW);
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                //intent.putExtra("key", supermanTextView.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         recreateFiller();
-
 
 
         buttonRed = (Button) findViewById(R.id.buttonRed);
@@ -291,6 +309,8 @@ public class MainActivity extends AppCompatActivity {
     private void recreateFiller() {
         try {
             bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
+            bitmapHeight = bitmap.getHeight();
+            bitmapWidth = bitmap.getWidth();
             buttonXY.setText(String.format("%d %d", bitmap.getWidth(), bitmap.getHeight()));
             filler = new QueueLinearFloodFiller(bitmap);
             filler.setFillColor(currentColor);
@@ -328,5 +348,12 @@ public class MainActivity extends AppCompatActivity {
         borderBrown.setBackgroundColor(brownColor);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+        String s = preferences.getString("name", "не найдено");
+        //supermanTextView.setText(s);
+    }
 
 }
