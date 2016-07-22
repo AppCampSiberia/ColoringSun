@@ -56,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonGrey;
     private Button buttonPink;
     private Button buttonBrown;
-    private Button buttonXY;
     private Button buttonColor;
+    private Button buttonBack;
+    private Button buttonDelete;
+    private Button buttonInformation;
 
     private LinearLayout borderRed;
     private LinearLayout borderOrange;
@@ -119,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
                     if (xx < bitmapWidth && yy < bitmapHeight) {
                         Point pt = new Point(xx, yy);
-                        buttonXY.setText(String.format("%d %d", xx, yy));
                         buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
                         filler.setFillColor(currentColor);
                         filler.floodFill(xx, yy);
@@ -135,10 +136,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonXY = (Button) findViewById(R.id.buttonXY);
-
-        buttonColor = (Button) findViewById(R.id.buttonColor);
-        buttonColor.setOnClickListener(new View.OnClickListener() {
+        buttonBack = (Button) findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //supermanTextView.setBackgroundColor(Color.YELLOW);
@@ -147,6 +146,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonDelete = (Button) findViewById(R.id.buttonDelete);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recreateFiller();
+            }
+        });
+
+        buttonInformation = (Button) findViewById(R.id.buttonInformation);
+        buttonInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //supermanTextView.setBackgroundColor(Color.YELLOW);
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                //intent.putExtra("key", supermanTextView.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+
+        buttonColor = (Button) findViewById(R.id.buttonColor);
+
 
         recreateFiller();
 
@@ -311,13 +333,10 @@ public class MainActivity extends AppCompatActivity {
             bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
             bitmapHeight = bitmap.getHeight();
             bitmapWidth = bitmap.getWidth();
-            buttonXY.setText(String.format("%d %d", bitmap.getWidth(), bitmap.getHeight()));
             filler = new QueueLinearFloodFiller(bitmap);
             filler.setFillColor(currentColor);
             filler.setTargetColor(targetColor);
             filler.setTolerance(100);
-            Point pt = new Point(1, 1);
-//            filler.floodFill(1, 1);
             bitmap = filler.getImage();
 
             render();
