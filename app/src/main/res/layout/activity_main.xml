@@ -131,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/buttonBack"
                     android:layout_width="0dp"
@@ -176,11 +177,24 @@
                 android:layout_weight="1"
                 android:scaleType="fitStart" />
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Другая картинка"
-                android:id="@+id/buttonImage" />
+                android:orientation="horizontal">
+
+                <Button
+
+                    android:id="@+id/buttonImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#ffffff"
+                    android:text="Картинка" />
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
 

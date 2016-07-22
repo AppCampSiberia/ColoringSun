@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imageNumber = imageNumber + 1;
-                if (imageNumber == 4){
+                if (imageNumber == 4) {
                     imageNumber = 1;
                 }
                 recreateFiller();
@@ -153,12 +153,13 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+
         buttonBack = (Button) findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bitmap = previosBitmap;
-                render();
+                recreateFiller(previosBitmap);
             }
 
         });
@@ -344,21 +345,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void initShareIntent(String type, String _text) {
+        //File filePath = getFileStreamPath("shareimage.jpg");  //optional //internal storage
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, _text);
+        // shareIntent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(filePath)));  //optional//use this when you want to send an image
+        shareIntent.setType("image/jpeg");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "send"));
+    }
+
     private void recreateFiller() {
         try {
             bitmap = BitmapFactory.decodeStream(getAssets().open(getImageName()));
-            bitmapHeight = bitmap.getHeight();
-            bitmapWidth = bitmap.getWidth();
-            filler = new QueueLinearFloodFiller(bitmap);
-            filler.setFillColor(currentColor);
-            filler.setTargetColor(targetColor);
-            filler.setTolerance(100);
-            bitmap = filler.getImage();
+            recreateFiller(bitmap);
 
-            render();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void recreateFiller(Bitmap newBitmap) {
+        bitmap = newBitmap;
+        previosBitmap = bitmap;
+        bitmapHeight = bitmap.getHeight();
+        bitmapWidth = bitmap.getWidth();
+        filler = new QueueLinearFloodFiller(bitmap);
+        filler.setFillColor(currentColor);
+        filler.setTargetColor(targetColor);
+        filler.setTolerance(100);
+        bitmap = filler.getImage();
+
+        render();
+
     }
 
     private void resetBorderColors() {
@@ -391,14 +411,14 @@ public class MainActivity extends AppCompatActivity {
         //supermanTextView.setText(s);
     }
 
-    protected String getImageName(){
-        if (imageNumber == 1){
+    protected String getImageName() {
+        if (imageNumber == 1) {
             return "18789.jpg";
         }
-        if (imageNumber ==2) {
+        if (imageNumber == 2) {
             return "sun.gif";
         }
-        if (imageNumber == 3){
+        if (imageNumber == 3) {
             return "sunset.gif";
         }
         return "18789.jpg";
