@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonBack;
     private Button buttonDelete;
     private Button buttonInformation;
+    private Button buttonImage;
 
     private LinearLayout borderRed;
     private LinearLayout borderOrange;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private float bitmapHeight;
     private Bitmap bitmap;
     private Bitmap previosBitmap;
+    private int imageNumber;
 
     public MainActivity() {
     }
@@ -136,6 +138,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
+        });
+
+        buttonImage = (Button) findViewById(R.id.buttonImage);
+        buttonImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageNumber = imageNumber + 1;
+                if (imageNumber == 4){
+                    imageNumber = 1;
+                }
+                recreateFiller();
+            }
+
         });
 
         buttonBack = (Button) findViewById(R.id.buttonBack);
@@ -331,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void recreateFiller() {
         try {
-            bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
+            bitmap = BitmapFactory.decodeStream(getAssets().open(getImageName()));
             bitmapHeight = bitmap.getHeight();
             bitmapWidth = bitmap.getWidth();
             filler = new QueueLinearFloodFiller(bitmap);
@@ -374,6 +389,19 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
         String s = preferences.getString("name", "не найдено");
         //supermanTextView.setText(s);
+    }
+
+    protected String getImageName(){
+        if (imageNumber == 1){
+            return "18789.jpg";
+        }
+        if (imageNumber ==2) {
+            return "sun.gif";
+        }
+        if (imageNumber == 3){
+            return "sunset.gif";
+        }
+        return "18789.jpg";
     }
 
 }
