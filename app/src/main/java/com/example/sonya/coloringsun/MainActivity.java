@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout borderBrown;
 
     private ImageView imageView;
-    private int imageViewWidth;
-    private int imageViewHeight;
-    private int bitmapWidth;
-    private int bitmapHeight;
+    private float imageViewWidth;
+    private float imageViewHeight;
+    private float bitmapWidth;
+    private float bitmapHeight;
     private Bitmap bitmap;
 
     public MainActivity() {
