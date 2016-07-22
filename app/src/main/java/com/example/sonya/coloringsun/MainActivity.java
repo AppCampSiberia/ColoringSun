@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private float bitmapWidth;
     private float bitmapHeight;
     private Bitmap bitmap;
+    private Bitmap previosBitmap;
 
     public MainActivity() {
     }
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         Point pt = new Point(xx, yy);
                         buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
                         filler.setFillColor(currentColor);
+                        previosBitmap = bitmap.copy(bitmap.getConfig(), true);
                         filler.floodFill(xx, yy);
                         bitmap = filler.getImage();
 
@@ -140,11 +142,10 @@ public class MainActivity extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //supermanTextView.setBackgroundColor(Color.YELLOW);
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                //intent.putExtra("key", supermanTextView.getText().toString());
-                startActivity(intent);
+                bitmap = previosBitmap;
+                render();
             }
+
         });
 
         buttonDelete = (Button) findViewById(R.id.buttonDelete);
