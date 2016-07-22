@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     // #fb0303
 
     int targetColor = Color.WHITE;
-    int currentColor = Color.BLUE;
+    int currentColor = YELLOW_COLOR;
     QueueLinearFloodFiller filler;
 
 
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
         borderOrange.setBackgroundColor(orangeColor);
 
         borderYellow = (LinearLayout) findViewById(R.id.borderYellow);
-        borderYellow.setBackgroundColor(yellowColor);
+        borderYellow.setBackgroundColor(Color.BLACK);
 
         borderGreen = (LinearLayout) findViewById(R.id.borderGreen);
         borderGreen.setBackgroundColor(greenColor);
