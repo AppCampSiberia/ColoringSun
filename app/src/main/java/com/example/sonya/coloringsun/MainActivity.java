@@ -413,7 +413,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected String getImageName() {
         if (imageNumber == 1) {
-            return "18789.jpg";
+            return "2432092";
         }
         if (imageNumber == 2) {
             return "sun.gif";
@@ -421,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
         if (imageNumber == 3) {
             return "sunset.gif";
         }
-        return "18789.jpg";
+        return "2432092";
     }
 
 }
