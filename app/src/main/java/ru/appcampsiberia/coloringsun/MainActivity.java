@@ -1,4 +1,4 @@
-package com.example.sonya.coloringsun;
+package ru.appcampsiberia.coloringsun;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
