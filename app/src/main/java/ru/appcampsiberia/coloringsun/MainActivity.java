@@ -1,5 +1,7 @@
-package com.example.sonya.coloringsun;
+package ru.appcampsiberia.coloringsun;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     // #fb0303
 
     int targetColor = Color.WHITE;
-    int currentColor = Color.BLUE;
+    int currentColor = YELLOW_COLOR;
     QueueLinearFloodFiller filler;
 
 
@@ -54,8 +56,11 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonGrey;
     private Button buttonPink;
     private Button buttonBrown;
-    private Button buttonXY;
     private Button buttonColor;
+    private Button buttonBack;
+    private Button buttonDelete;
+    private Button buttonInformation;
+    private Button buttonImage;
 
     private LinearLayout borderRed;
     private LinearLayout borderOrange;
@@ -69,7 +74,13 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout borderBrown;
 
     private ImageView imageView;
+    private float imageViewWidth;
+    private float imageViewHeight;
+    private float bitmapWidth;
+    private float bitmapHeight;
     private Bitmap bitmap;
+    private Bitmap previosBitmap;
+    private int imageNumber;
 
     public MainActivity() {
     }
@@ -82,55 +93,101 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         //imageView.set
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                render();
-            }
-        });
-
 
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
+                imageViewWidth = imageView.getWidth();
+                imageViewHeight = imageView.getHeight();
+                float wc = bitmapWidth / imageViewWidth;
+                float hc = bitmapHeight / imageViewHeight;
+
+                if (wc > hc) {
+                    imageViewHeight = (int) (bitmapHeight / wc);
+
+
+                } else {
+                    imageViewWidth = (int) (bitmapWidth / hc);
+
+                }
+
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     //recreateFiller();
                     float x = event.getX();
                     float y = event.getY();
-                    float w = 736;
-                    float width = imageView.getWidth();
-                    x = x/width *w;
-                    float h = 873;
-                    float height = imageView.getWidth();
-                    y= y/height *h;
-                    int xx = (int)x;
-                    int yy = (int)y;
+                    x = x / imageViewWidth * bitmapWidth;
+                    y = y / imageViewHeight * bitmapHeight;
+                    int xx = (int) x;
+                    int yy = (int) y;
 
-                    Point pt = new Point(xx, yy);
-                    buttonXY.setText(String.format("%d %d", xx, yy));
-                    buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
-//                    filler = new QueueLinearFloodFiller(bitmap);
-                    filler.setFillColor(currentColor);
-                    filler.floodFill(xx, yy);
-                    bitmap = filler.getImage();
+                    if (xx < bitmapWidth && yy < bitmapHeight) {
+                        Point pt = new Point(xx, yy);
+                        buttonColor.setBackgroundColor(bitmap.getPixel(xx, yy));
+                        filler.setFillColor(currentColor);
+                        previosBitmap = bitmap.copy(bitmap.getConfig(), true);
+                        filler.floodFill(xx, yy);
+                        bitmap = filler.getImage();
 
-                    render();
+                        render();
+
+                    }
+
 
                 }
                 return true;
             }
         });
 
-        buttonXY = (Button) findViewById(R.id.buttonXY);
+        buttonImage = (Button) findViewById(R.id.buttonImage);
+        buttonImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageNumber = imageNumber + 1;
+                if (imageNumber == 4) {
+                    imageNumber = 1;
+                }
+                recreateFiller();
+            }
+
+        });
+
+
+
+        buttonBack = (Button) findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recreateFiller(previosBitmap);
+            }
+
+        });
+
+        buttonDelete = (Button) findViewById(R.id.buttonDelete);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recreateFiller();
+            }
+        });
+
+        buttonInformation = (Button) findViewById(R.id.buttonInformation);
+        buttonInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //supermanTextView.setBackgroundColor(Color.YELLOW);
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                //intent.putExtra("key", supermanTextView.getText().toString());
+                startActivity(intent);
+            }
+        });
+
 
         buttonColor = (Button) findViewById(R.id.buttonColor);
 
-        recreateFiller();
 
+        recreateFiller();
 
 
         buttonRed = (Button) findViewById(R.id.buttonRed);
@@ -254,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
         borderOrange.setBackgroundColor(orangeColor);
 
         borderYellow = (LinearLayout) findViewById(R.id.borderYellow);
-        borderYellow.setBackgroundColor(yellowColor);
+        borderYellow.setBackgroundColor(Color.BLACK);
 
         borderGreen = (LinearLayout) findViewById(R.id.borderGreen);
         borderGreen.setBackgroundColor(greenColor);
@@ -288,22 +345,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void initShareIntent(String type, String _text) {
+        //File filePath = getFileStreamPath("shareimage.jpg");  //optional //internal storage
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, _text);
+        // shareIntent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(filePath)));  //optional//use this when you want to send an image
+        shareIntent.setType("image/jpeg");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "send"));
+    }
+
     private void recreateFiller() {
         try {
-            bitmap = BitmapFactory.decodeStream(getAssets().open("18789.jpg"));
-            buttonXY.setText(String.format("%d %d", bitmap.getWidth(), bitmap.getHeight()));
-            filler = new QueueLinearFloodFiller(bitmap);
-            filler.setFillColor(currentColor);
-            filler.setTargetColor(targetColor);
-            filler.setTolerance(100);
-            Point pt = new Point(1, 1);
-//            filler.floodFill(1, 1);
-            bitmap = filler.getImage();
+            bitmap = BitmapFactory.decodeStream(getAssets().open(getImageName()));
+            recreateFiller(bitmap);
 
-            render();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void recreateFiller(Bitmap newBitmap) {
+        bitmap = newBitmap;
+        previosBitmap = bitmap;
+        bitmapHeight = bitmap.getHeight();
+        bitmapWidth = bitmap.getWidth();
+        filler = new QueueLinearFloodFiller(bitmap);
+        filler.setFillColor(currentColor);
+        filler.setTargetColor(targetColor);
+        filler.setTolerance(100);
+        bitmap = filler.getImage();
+
+        render();
+
     }
 
     private void resetBorderColors() {
@@ -328,5 +403,25 @@ public class MainActivity extends AppCompatActivity {
         borderBrown.setBackgroundColor(brownColor);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+        String s = preferences.getString("name", "не найдено");
+        //supermanTextView.setText(s);
+    }
+
+    protected String getImageName() {
+        if (imageNumber == 1) {
+            return "2432092";
+        }
+        if (imageNumber == 2) {
+            return "sun.gif";
+        }
+        if (imageNumber == 3) {
+            return "sunset.gif";
+        }
+        return "2432092";
+    }
 
 }
