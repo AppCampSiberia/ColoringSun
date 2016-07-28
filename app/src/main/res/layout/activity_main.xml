@@ -191,6 +191,15 @@
                     android:background="#ffffff"
                     android:text="Картинка" />
 
+                <Button
+
+                    android:id="@+id/buttonAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#ffffff"
+                    android:text="добавить" />
+
 
             </LinearLayout>
 
