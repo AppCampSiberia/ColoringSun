@@ -16,6 +16,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -84,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private Bitmap previosBitmap;
     private int imageNumber;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     public MainActivity() {
     }
@@ -156,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
 
 
         buttonBack = (Button) findViewById(R.id.buttonBack);
@@ -308,45 +316,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        static final int GALLERY_REQUEST = 1;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.buttonAdd);
+        button.setOnClickListener(new View.OnClickListener() {
 
-            Button button = (Button)findViewById(R.id.buttonAdd);
-            button.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                    photoPickerIntent.setType("image/*");
-                    startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
-                }
-            });
-        }
-
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-            super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
-            Bitmap bitmap = null;
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-
-            switch(requestCode) {
-                case GALLERY_REQUEST:
-                    if(resultCode == RESULT_OK){
-                        Uri selectedImage = imageReturnedIntent.getData();
-                        try {
-                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        imageView.setImageBitmap(bitmap);
-                    }
+            @Override
+            public void onClick(View v) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
             }
-        }
+        });
 
 
         borderRed = (LinearLayout) findViewById(R.id.borderRed);
@@ -380,8 +360,31 @@ public class MainActivity extends AppCompatActivity {
         borderBrown.setBackgroundColor(brownColor);
 
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        Bitmap bitmap = null;
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+
+        switch (requestCode) {
+            case GALLERY_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    imageView.setImageBitmap(bitmap);
+                }
+        }
+    }
 
     private void render() {
         imageView.setImageBitmap(null);
@@ -469,4 +472,44 @@ public class MainActivity extends AppCompatActivity {
         return "2432092";
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://ru.appcampsiberia.coloringsun/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://ru.appcampsiberia.coloringsun/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }
+
