@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonDelete;
     private Button buttonInformation;
     private Button buttonImage;
-    private Button button;
+    private Button buttoni;
 
     private LinearLayout borderRed;
     private LinearLayout borderOrange;
@@ -317,8 +317,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button button = (Button) findViewById(R.id.buttonAdd);
-        button.setOnClickListener(new View.OnClickListener() {
+        buttoni = (Button) findViewById(R.id.buttonAdd);
+        buttoni.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -369,7 +369,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
 
-        Bitmap bitmap = null;
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
         switch (requestCode) {
@@ -378,10 +377,10 @@ public class MainActivity extends AppCompatActivity {
                     Uri selectedImage = imageReturnedIntent.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                        recreateFiller(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    imageView.setImageBitmap(bitmap);
                 }
         }
     }
