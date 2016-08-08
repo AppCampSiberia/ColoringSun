@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     final int GREY_COLOR = Color.parseColor("#7e7e7e");
     final int PINK_COLOR = Color.parseColor("#f99ef0");
     final int BROWN_COLOR = Color.parseColor("#9f551f");
+    final int GALLERY_REQUEST = 1;
 
     int redColor = RED_COLOR;
     int orangeColor = ORANGE_COLOR;
