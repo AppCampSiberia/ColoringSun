@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
                     Uri selectedImage = imageReturnedIntent.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                        recreateFiller(bitmap);
+                        //recreateFiller(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
